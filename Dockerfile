@@ -6,11 +6,11 @@ WORKDIR /app
 COPY ./plugins /app/plugins
 
 # Build setiap plugin dan letakkan di /tmp
-RUN cd /app/plugins/plugin-jwt && go build -o /tmp/plugin-jwt && \
-    cd /app/plugins/plugin-basic-auth && go build -o /tmp/plugin-basic-auth && \
-    cd /app/plugins/plugin-cache && go build -o /tmp/plugin-cache && \
-    cd /app/plugins/plugin-whitelist && go build -o /tmp/plugin-whitelist && \
-    cd /app/plugins/plugin-ratelimit && go build -o /tmp/plugin-ratelimit
+RUN cd /app/plugins/plugin-jwt && go mod tidy && go build -o /tmp/plugin-jwt && \
+    cd /app/plugins/plugin-basic-auth && go mod tidy && go build -o /tmp/plugin-basic-auth && \
+    cd /app/plugins/plugin-cache && go mod tidy && go build -o /tmp/plugin-cache && \
+    cd /app/plugins/plugin-whitelist && go mod tidy && go build -o /tmp/plugin-whitelist && \
+    cd /app/plugins/plugin-ratelimit && go mod tidy && go build -o /tmp/plugin-ratelimit
 
 # Stage 2: Final image
 FROM nginx:latest
