@@ -31,4 +31,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: reza_ardani/sidra-gateway:latest
+          tags: reza_ardani/sidra:latest
