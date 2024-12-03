@@ -9,7 +9,7 @@ COPY plugins/plugin-jwt ./plugins/plugin-jwt
 COPY plugins/plugin-whitelist ./plugins/plugin-whitelist
 COPY plugins/plugin-cache ./plugins/plugin-cache
 COPY plugins/plugin-ratelimit ./plugins/plugin-ratelimit
-COPY sidra-config ./sidra-config
+COPY sidra-config /app/sidra-config
 COPY sidra-plugins-hub ./sidra-plugins-hub
 
 # Build semua plugin
@@ -22,7 +22,6 @@ RUN for dir in ./plugins/*; do \
 done
 
 RUN cd sidra-config && go mod tidy && go build -o /app/sidra-config;
-
 
 # Stage 2: Menjalankan container dengan nginx dan plugin
 FROM nginx:latest
