@@ -29,10 +29,13 @@ FROM nginx:latest
 WORKDIR /app
 
 # Salin hasil build dan konfigurasi ke dalam container
-COPY --from=builder /app/build /app/plugins
+COPY --from=builder /app/build/plugin-basic-auth /app/plugins/plugin-basic-auth
+COPY --from=builder /app/build/plugin-jwt /app/plugins/plugin-jwt
+COPY --from=builder /app/build/plugin-whitelist /app/plugins/plugin-whitelist
+COPY --from=builder /app/build/plugin-cache /app/plugins/plugin-cache
+COPY --from=builder /app/build/plugin-ratelimit /app/plugins/plugin-ratelimit
 COPY --from=builder /app/sidra-config /app/sidra-config
 COPY --from=builder /app/sidra-plugins-hub /app/sidra-plugins-hub
-COPY --from=builder /app/sidra-config /app/sidra-config
 
 # Salin konfigurasi nginx
 COPY config/nginx.conf /etc/nginx/conf.d/sidra.conf
