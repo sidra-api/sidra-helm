@@ -21,7 +21,7 @@ RUN for dir in ./plugins/*; do \
     fi; \
 done
 
-RUN cd sidra-config && go mod tidy && go build -o /app/sidra-config
+# RUN cd sidra-config && go mod tidy && go build -o /app/sidra-config
 
 # Stage 2: Menjalankan container dengan nginx dan plugin
 FROM nginx:latest
