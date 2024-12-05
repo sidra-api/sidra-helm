@@ -9,6 +9,10 @@ COPY . .
 RUN for dir in ./plugins/*; do \
     if [ -d "$dir" ]; then \
         echo "Building $(basename $dir)..."; \
+        if [ -z "$(ls -A $dir/*.go 2>/dev/null)" ]; then \
+            echo "No Go files in $(basename $dir), skipping..."; \
+            continue; \
+        fi; \
         cd $dir && go mod init $(basename $dir) 2>/dev/null || true && go mod tidy && go build -o /app/build/$(basename $dir); \
         cd -; \
     fi; \
