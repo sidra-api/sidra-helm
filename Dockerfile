@@ -30,8 +30,10 @@ COPY --from=builder /app/build/plugin-cache /app/plugins/plugin-cache
 COPY --from=builder /app/build/plugin-rate-limit /app/plugins/plugin-rate-limit
 COPY --from=builder /app/bin/sidra-config /app/sidra-config
 COPY --from=builder /app/bin/sidra-plugins-hub /app/sidra-plugins-hub
+
 # Install Redis
-RUN apk add --no-cache redis
+# RUN apk add --no-cache redis
+RUN apt-get update && apt-get install -y redis
 
 # Menyediakan akses ke port 8080
 EXPOSE 8080 3033 3080
