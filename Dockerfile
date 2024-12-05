@@ -3,6 +3,10 @@ FROM golang:1.23-alpine AS builder
 
 WORKDIR /app
 
+# Salin file go.mod dan go.sum ke dalam direktori root
+# COPY go.mod go.sum ./
+
+# Salin seluruh proyek ke dalam container
 COPY . .
 
 # Build semua plugin
@@ -14,6 +18,7 @@ RUN for dir in ./plugins/*; do \
     fi; \
 done
 
+# Pastikan direktori yang sesuai memiliki go.mod
 RUN cd ./services/sidra-config && go mod tidy && go build -o /app/bin/sidra-config
 RUN cd ./services/sidra-plugins-hub && go mod tidy && go build -o /app/bin/sidra-plugins-hub
 
