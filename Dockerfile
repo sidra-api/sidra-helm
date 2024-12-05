@@ -25,6 +25,7 @@ RUN cd ./services/sidra-plugins-hub && go mod tidy && go build -o /app/bin/sidra
 # Stage 2: Menjalankan container dengan nginx dan plugin
 FROM nginx:latest
 
+COPY . /app
 WORKDIR /app
 
 # Salin hasil build dan konfigurasi ke dalam container
