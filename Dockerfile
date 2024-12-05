@@ -9,14 +9,15 @@ COPY . .
 RUN for dir in ./plugins/*; do \
     if [ -d "$dir" ]; then \
         echo "Building $(basename $dir)..."; \
-        cd $dir && go mod tidy && go build -o /app/build/$(basename $dir); \
+        cd $dir && go mod init $(basename $dir) 2>/dev/null || true && go mod tidy && go build -o /app/build/$(basename $dir); \
         cd -; \
     fi; \
 done
 
+RUN cd ./services/sidra-config && go mod init sidra-config 2>/dev/null || true && go mod tidy && go build -o /app/bin/sidra-config
+RUN cd ./services/sidra-plugins-hub && go mod init sidra-plugins-hub 2>/dev/null || true && go mod tidy && go build -o /app/bin/sidra-plugins-hub
 RUN cd ./services/sidra-config && go mod tidy && go build -o /app/bin/sidra-config
 RUN cd ./services/sidra-plugins-hub && go mod tidy && go build -o /app/bin/sidra-plugins-hub
-
 # Stage 2: Menjalankan container dengan nginx dan plugin
 FROM nginx:latest
 
