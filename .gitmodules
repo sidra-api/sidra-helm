@@ -1,0 +1,24 @@
+[submodule "plugins/plugin-rate-limit"]
+	path = plugins/plugin-rate-limit
+	url = git@github.com:sidra-gateway/plugin-rate-limit.git
+[submodule "plugins/plugin-basic-auth"]
+	path = plugins/plugin-basic-auth
+	url = git@github.com:sidra-gateway/plugin-basic-auth.git
+[submodule "services/sidra-config"]
+	path = services/sidra-config
+	url = git@github.com:sidra-gateway/sidra-config.git
+[submodule "services/sidra-plugins-hub"]
+	path = services/sidra-plugins-hub
+	url = git@github.com:sidra-gateway/sidra-plugins-hub.git
+[submodule "plugins/plugin-jwt"]
+	path = plugins/plugin-jwt
+	url = git@github.com:sidra-gateway/plugin-jwt.git
+[submodule "plugins/plugin-cache"]
+	path = plugins/plugin-cache
+	url = git@github.com:sidra-gateway/plugin-cache.git
+[submodule "plugins/plugin-whitelist"]
+	path = plugins/plugin-whitelist
+	url = git@github.com:sidra-gateway/plugin-whitelist.git
+[submodule "plugins/plugin-rsa"]
+	path = plugins/plugin-rsa
+	url = git@github.com:sidra-gateway/plugin-rsa.git
