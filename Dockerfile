@@ -3,14 +3,7 @@ FROM golang:1.23-alpine AS builder
 
 WORKDIR /app
 
-# Salin kode sumber untuk semua plugin dan konfigurasi
-COPY plugins/plugin-basic-auth ./plugins/plugin-basic-auth
-COPY plugins/plugin-jwt ./plugins/plugin-jwt
-COPY plugins/plugin-whitelist ./plugins/plugin-whitelist
-COPY plugins/plugin-cache ./plugins/plugin-cache
-COPY plugins/plugin-ratelimit ./plugins/plugin-ratelimit
-COPY sidra-config /app/sidra-config
-COPY sidra-plugins-hub ./sidra-plugins-hub
+COPY . .
 
 # Build semua plugin
 RUN for dir in ./plugins/*; do \
@@ -21,7 +14,8 @@ RUN for dir in ./plugins/*; do \
     fi; \
 done
 
-# RUN cd sidra-config && go mod tidy && go build -o /app/sidra-config
+RUN cd ./services/sidra-config && go mod tidy && go build -o /app/bin/sidra-config
+RUN cd ./services/sidra-plugins-hub && go mod tidy && go build -o /app/bin/sidra-plugins-hub
 
 # Stage 2: Menjalankan container dengan nginx dan plugin
 FROM nginx:latest
@@ -33,16 +27,14 @@ COPY --from=builder /app/build/plugin-basic-auth /app/plugins/plugin-basic-auth
 COPY --from=builder /app/build/plugin-jwt /app/plugins/plugin-jwt
 COPY --from=builder /app/build/plugin-whitelist /app/plugins/plugin-whitelist
 COPY --from=builder /app/build/plugin-cache /app/plugins/plugin-cache
-COPY --from=builder /app/build/plugin-ratelimit /app/plugins/plugin-ratelimit
-COPY --from=builder /app/sidra-config /app/sidra-config
-COPY --from=builder /app/sidra-plugins-hub /app/sidra-plugins-hub
-
-# Salin konfigurasi nginx
-COPY config/nginx.conf /etc/nginx/conf.d/sidra.conf
-COPY sidra-plugins-hub /app/sidra-plugins-hub
+COPY --from=builder /app/build/plugin-rate-limit /app/plugins/plugin-rate-limit
+COPY --from=builder /app/bin/sidra-config /app/sidra-config
+COPY --from=builder /app/bin/sidra-plugins-hub /app/sidra-plugins-hub
+# Install Redis
+RUN apk add --no-cache redis
 
 # Menyediakan akses ke port 8080
-EXPOSE 8080 3033
+EXPOSE 8080 3033 3080
 
 # Salin skrip run.sh
 COPY run.sh /app/run.sh

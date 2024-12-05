@@ -1,3 +1,9 @@
-cd /app/sidra-config && ./sidra-proxy &
-cd /app/sidra-plugins-hub && ./sidra-plugins-hub &
+./sidra-config &
+./sidra-plugins-hub &
+for plugin in ./plugins/*; do
+    if [ -x "$plugin" ]; then
+        "$plugin" >> /tmp/plugin.log &
+    fi
+done
+redis-server &
 nginx -g 'daemon off;'
