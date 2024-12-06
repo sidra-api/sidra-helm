@@ -10,9 +10,9 @@ redis-server --daemonize yes
 /app/sidra-plugins-hub &
 
 # Jalankan semua binary plugin di direktori /app/plugins
-for plugin_binary in /app/plugins/*/main; do
+for plugin_binary in /app/plugins/*; do
     if [ -x "$plugin_binary" ]; then
-        "$plugin_binary" >> "/tmp/$(basename "$(dirname "$plugin_binary")").log" 2>&1 &
+        "$plugin_binary" >> "/tmp/$(basename "$plugin_binary").log" 2>&1 &
     fi
 done
 

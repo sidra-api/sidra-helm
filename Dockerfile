@@ -53,11 +53,16 @@ RUN mkdir -p /app/plugins
 # COPY --from=builder /app/bin/sidra-plugins-hub /app/sidra-plugins-hub
 
 # Salin plugin yang sudah ada file binary-nya ke direktori /app/plugins
-COPY ./plugins/*/main /app/plugins/
+COPY ./plugins/plugin-basic-auth/plugin-basic-auth /app/plugins/
+COPY ./plugins/plugin-cache/plugin-cache /app/plugins/
+COPY ./plugins/plugin-jwt/plugin-jwt /app/plugins/
+COPY ./plugins/plugin-rate-limit/plugin-rate-limit /app/plugins/
+COPY ./plugins/plugin-rsa/plugin-rsa /app/plugins/
+COPY ./plugins/plugin-whitelist/plugin-whitelist /app/plugins/
 
 # Salin hasil build aplikasi sidra-config dan sidra-plugins-hub yang sudah jadi
-COPY ./services/sidra-config /app/sidra-config
-COPY ./services/sidra-plugins-hub /app/sidra-plugins-hub
+COPY ./services/sidra-config/sidra-config /app/
+COPY ./services/sidra-plugins-hub/sidra-plugins-hub /app/
 
 RUN echo "Contents of /app/plugins:" && ls -l /app/plugins
 
