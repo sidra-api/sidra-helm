@@ -1,9 +1,20 @@
-./sidra-config &
-./sidra-plugins-hub &
-for plugin in ./plugins/*; do
-    if [ -x "$plugin" ]; then
-        "$plugin" >> /tmp/plugin.log &
+#!/bin/bash
+
+# Jalankan Redis
+redis-server --daemonize yes
+
+# Jalankan sidra-config
+/app/sidra-config &
+
+# Jalankan sidra-plugins-hub
+/app/sidra-plugins-hub &
+
+# Jalankan semua binary plugin di direktori /app/plugins
+for plugin_binary in /app/plugins/*/main; do
+    if [ -x "$plugin_binary" ]; then
+        "$plugin_binary" >> "/tmp/$(basename "$(dirname "$plugin_binary")").log" 2>&1 &
     fi
 done
-redis-server &
-nginx -g 'daemon off;'
+
+# Jalankan nginx
+nginx -g "daemon off;"
