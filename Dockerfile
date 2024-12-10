@@ -6,6 +6,8 @@ WORKDIR /app
 # Instalasi tools dasar
 RUN apk add --no-cache git bash docker-cli
 
+FROM nginx:latest
+
 # Copy konfigurasi nginx dari direktori lokal ke container
 COPY ./config/nginx.conf /etc/nginx/nginx.conf
 
