@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # GitHub organization and personal access token
+source .env
 ORG="sidra-gateway"
 TOKEN=$TOKEN
 # Configure git to use the personal access token for authentication
