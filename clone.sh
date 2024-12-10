@@ -21,12 +21,17 @@ mkdir -p ./services || true
 # Build the plugins
 for repo in $repos; do
     repo_name=$(basename -s .git $repo)
-    if [[ $repo_name == plugin* ]]; then        
+    if [[ $repo_name == plugin-* ]]; then        
         echo "Cloning $repo_name"
-        git clone $repo ./plugins/$repo_name
+        git clone "$repo" "./plugins/$repo_name"
+        # Build plugin binary
+        # cd "./plugins/$repo_name" || exit
+        # go build -o main
+        # cd - || exit
     fi    
 done
 
+# Clone sidra-config and sidra-plugins-hub
 git clone git@github.com:sidra-gateway/sidra-config.git ./services/sidra-config
 git clone git@github.com:sidra-gateway/sidra-plugins-hub.git ./services/sidra-plugins-hub
 
