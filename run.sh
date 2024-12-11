@@ -1,9 +1,11 @@
-./sidra-config &
-./sidra-plugins-hub &
+trap 'kill 0' SIGTERM
+
+redis-server &
+./bin/sidra-config &
 for plugin in ./plugins/*; do
     if [ -x "$plugin" ]; then
-        "$plugin" >> /tmp/plugin.log &
+        "bin/plugins/$plugin" >> /tmp/plugin.log &
     fi
 done
-redis-server &
-nginx -g 'daemon off;'
+./bin/sidra-plugins-hub &
+wait
