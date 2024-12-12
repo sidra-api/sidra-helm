@@ -19,7 +19,7 @@ RUN for dir in ./plugins/*; do \
 done
 
 # Pastikan direktori yang sesuai memiliki go.mod
-RUN cd ./services/sidra-config && go mod tidy && go build -o /app/bin/sidra-config
+RUN cd ./services/sidra-data-plane && go mod tidy && go build -o /app/bin/sidra-data-plane
 RUN cd ./services/sidra-plugins-hub && go mod tidy && go build -o /app/bin/sidra-plugins-hub
 
 RUN rm -rf ./plugins
