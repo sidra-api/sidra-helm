@@ -38,10 +38,10 @@ jobs:
       # Build the Docker image
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/sidra-api/sidrax:latest .
+          docker build -t ghcr.io/sidra-api/sidra:latest .
 
       # Push the Docker image to GitHub Packages
       - name: Push Docker image to GitHub Packages
         run: |
-          docker push ghcr.io/sidra-api/sidrax:latest
+          docker push ghcr.io/sidra-api/sidra:latest
       
