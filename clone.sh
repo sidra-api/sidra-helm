@@ -30,5 +30,5 @@ for repo in $repos; do
 done
 
 # Clone sidra-config and sidra-plugins-hub
-git clone git@github.com:sidra-gateway/sidra-data-plane.git ./services/sidra-data-plane
-git clone git@github.com:sidra-gateway/sidra-plugins-hub.git ./services/sidra-plugins-hub
+git clone https://github.com/sidra-api/sidra-data-plane.git ./services/sidra-data-plane
+git clone git@github.com:sidra-api/sidra-plugins-hub.git ./services/sidra-plugins-hub

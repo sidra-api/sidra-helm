@@ -38,6 +38,8 @@ jobs:
       # Execute a bash command
       - name: Clone
         run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
           bash clone.sh          
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
