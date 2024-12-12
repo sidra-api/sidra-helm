@@ -9,21 +9,21 @@ WORKDIR /app
 # Salin seluruh proyek ke dalam container
 COPY . .
 
-# # Build semua plugin
-# RUN for dir in ./plugins/*; do \
-#     if [ -d "$dir" ]; then \
-#         echo "Building $(basename $dir)..."; \
-#         cd $dir && go mod tidy && go build -o /app/bin/plugins/$(basename $dir); \
-#         cd -; \
-#     fi; \
-# done
+# Build semua plugin
+RUN for dir in ./plugins/*; do \
+    if [ -d "$dir" ]; then \
+        echo "Building $(basename $dir)..."; \
+        cd $dir && go mod tidy && go build -o /app/bin/plugins/$(basename $dir); \
+        cd -; \
+    fi; \
+done
 
-# # Pastikan direktori yang sesuai memiliki go.mod
-# RUN cd ./services/sidra-data-plane && go mod tidy && go build -o /app/bin/sidra-data-plane
-# RUN cd ./services/sidra-plugins-hub && go mod tidy && go build -o /app/bin/sidra-plugins-hub
+# Pastikan direktori yang sesuai memiliki go.mod
+RUN cd ./services/sidra-data-plane && go mod tidy && go build -o /app/bin/sidra-data-plane
+RUN cd ./services/sidra-plugins-hub && go mod tidy && go build -o /app/bin/sidra-plugins-hub
 
-# RUN rm -rf ./plugins
-# RUN rm -rf ./services
+RUN rm -rf ./plugins
+RUN rm -rf ./services
 
 RUN apk add --no-cache redis
 
