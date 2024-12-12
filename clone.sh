@@ -1,12 +1,10 @@
 #!/bin/bash
 
 # GitHub organization and personal access token
-ORG="sidra-gateway"
+ORG="sidra-api"
 TOKEN=$TOKEN
 # Configure git to use the personal access token for authentication
-git config --global credential.helper store
-cp ~/.git-credentials ~/.git-credentials.bak || true
-echo "https://$TOKEN:@github.com" > ~/.git-credentials
+
 
 # Get list of repositories in the organization
 repos=$(curl -s -H "Authorization: token $TOKEN" \
@@ -32,7 +30,5 @@ for repo in $repos; do
 done
 
 # Clone sidra-config and sidra-plugins-hub
-git clone git@github.com:sidra-gateway/sidra-config.git ./services/sidra-config
+git clone git@github.com:sidra-gateway/sidra-data-plane.git ./services/sidra-data-plane
 git clone git@github.com:sidra-gateway/sidra-plugins-hub.git ./services/sidra-plugins-hub
-
-cp ~/.git-credentials.bak ~/.git-credentials || true
