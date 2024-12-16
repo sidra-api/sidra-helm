@@ -3,12 +3,12 @@ entries:
   sidra:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-12-12T13:17:14.833894+08:00"
+    created: "2024-12-17T01:00:33.764264+07:00"
     description: A Helm chart for Kubernetes
-    digest: 4720241b847866c7f639e7e8d730bb8799314649fb2717da5e4969abce882cc0
+    digest: a6f3177052c0e3cda9a8f610dbe2495addba166d72f76da181e8e746235fed17
     name: sidra
     type: application
     urls:
     - sidra-0.1.0.tgz
     version: 0.1.0
-generated: "2024-12-12T13:17:14.83316+08:00"
+generated: "2024-12-17T01:00:33.76296+07:00"
