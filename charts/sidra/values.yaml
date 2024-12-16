@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/sidra-api/sidra
+  repository: ghcr.io/sidra-api/sidra@sha256
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
+  tag: 1bf78af8e183ee22fc95793c5060073f9e16b206c75ba10be2d6d0d357251f4d
 
 imagePullSecrets: []
 nameOverride: ""
@@ -73,11 +73,11 @@ resources: {}
 
 livenessProbe:
   httpGet:
-    path: /
+    path: /sidra/healthcheck
     port: http
 readinessProbe:
   httpGet:
-    path: /
+    path: /sidra/healthcheck
     port: http
 
 autoscaling:
