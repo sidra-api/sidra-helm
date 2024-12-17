@@ -106,4 +106,4 @@ tolerations: []
 
 affinity: {}
 
-gatewayid: "uuid"
+dataplaneid: "uuid"

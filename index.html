@@ -12,7 +12,7 @@
         <li>Step 2: Update the Helm chart repository:</li>
         <pre><code>helm repo update</code></pre>
         <li>Step 3: Install the Helm chart:</li>
-        <pre><code>helm install sidra sid/sidra</code></pre>
+        <pre><code>helm upgrade --install sidra sid/sidra --set dataplaneid=UUID</code></pre>
     </ol>
 </body>
 </html>
