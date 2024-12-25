@@ -35,7 +35,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}          
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -46,17 +46,17 @@ spec:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- with .Values.volumeMounts }}
           volumeMounts:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
+          - name: config-volume
+            mountPath: /tmp/config.yaml
+            subPath: config.yaml          
           envFrom:            
             - secretRef:
-                name: sidra-secret
-      {{- with .Values.volumes }}
+                name: {{ include "sidra.fullname" . }}
       volumes:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+      - name: config-volume
+        configMap:
+          name: {{ include "sidra.fullname" . }}      
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
