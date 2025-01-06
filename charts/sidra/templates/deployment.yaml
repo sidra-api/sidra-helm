@@ -46,17 +46,21 @@ spec:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.sidra.config }}
           volumeMounts:
           - name: config-volume
             mountPath: /tmp/config.yaml
-            subPath: config.yaml          
+            subPath: config.yaml
+          {{- end }}  
           envFrom:            
             - secretRef:
                 name: {{ include "sidra.fullname" . }}
+      {{- if .Values.sidra.config }}
       volumes:
       - name: config-volume
         configMap:
           name: {{ include "sidra.fullname" . }}      
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
