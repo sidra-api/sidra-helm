@@ -3,7 +3,17 @@ entries:
   sidra:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-01-06T07:24:52.799408+07:00"
+    created: "2025-01-06T07:35:00.833915+07:00"
+    description: A Helm chart for Kubernetes
+    digest: a002ade6ae38bf13d52ab3cf76ef06c23fd0e735e8fffc46e3abe511202ae7e7
+    name: sidra
+    type: application
+    urls:
+    - sidra-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-01-06T07:35:00.833465+07:00"
     description: A Helm chart for Kubernetes
     digest: 4b82cec62f5e37805d4871ee6bf5317eb254e0e4305ee8c528b3493113cba781
     name: sidra
@@ -13,7 +23,7 @@ entries:
     version: 0.1.5
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-01-06T07:24:52.798793+07:00"
+    created: "2025-01-06T07:35:00.832857+07:00"
     description: A Helm chart for Kubernetes
     digest: 4dbdc8dfef7ffee987b52b41bd96cc3a5da97d8340e00a5dd4978dc0b492cdac
     name: sidra
@@ -23,7 +33,7 @@ entries:
     version: 0.1.4
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-01-06T07:24:52.798171+07:00"
+    created: "2025-01-06T07:35:00.832173+07:00"
     description: A Helm chart for Kubernetes
     digest: 5090a82ebf6b6043343246a3abfbb67947b49812c0e042f26293c0fe645ea3a4
     name: sidra
@@ -33,7 +43,7 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-01-06T07:24:52.79607+07:00"
+    created: "2025-01-06T07:35:00.831467+07:00"
     description: A Helm chart for Kubernetes
     digest: e154308805bb39fceb7f29b2905c864fd86401d8677f49ec64074098adb22dca
     name: sidra
@@ -43,7 +53,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-01-06T07:24:52.795569+07:00"
+    created: "2025-01-06T07:35:00.830818+07:00"
     description: A Helm chart for Kubernetes
     digest: 37a33fcfd64361de1c1c652e5668a77371dc386dd9bd193aaa8145e87b8787a0
     name: sidra
@@ -51,4 +61,4 @@ entries:
     urls:
     - sidra-0.1.0.tgz
     version: 0.1.0
-generated: "2025-01-06T07:24:52.794568+07:00"
+generated: "2025-01-06T07:35:00.829881+07:00"
